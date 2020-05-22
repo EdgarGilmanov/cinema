@@ -1,20 +1,34 @@
 package ru.job4j.cinema.model;
 
-import org.apache.commons.dbcp2.BasicDataSource;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.Properties;
+import ru.job4j.cinema.store.PsqlStore;
+import ru.job4j.cinema.store.Store;
 
 public class Cinema {
-    private final boolean[][] model = new boolean[3][3];
+    private boolean[][] model;
+    private final Store store = PsqlStore.instOf();
+    private final static Cinema CINEMA = new Cinema();
 
-
-    public boolean isTaken(int row, int place) {
-        return model[row][place];
+    private Cinema() {
+        refresh();
     }
 
-    public void buyPlace(int row, int place) {
+    public static Cinema instOf() {
+        return CINEMA;
+    }
 
+    public boolean isPlaceTaken(int row, int place) {
+        return store.isPlaceTaken(row, place);
+    }
+
+    public boolean buyTicket(int row, int place) {
+        return store.takePlace(row, place);
+    }
+
+    public boolean[][] getModel() {
+        return model;
+    }
+
+    public void refresh() {
+        model = store.getAllPlaces();
     }
 }

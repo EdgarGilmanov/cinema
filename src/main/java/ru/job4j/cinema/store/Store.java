@@ -5,9 +5,11 @@ import ru.job4j.cinema.model.User;
 import java.util.Optional;
 
 public interface Store {
-    Optional<User> findUserByPhone();
+    Optional<User> findUserByPhone(String phone);
 
-    boolean isTaken();
+    boolean isPlaceTaken(int row, int place);
+
+    boolean[][] getAllPlaces();
 
     boolean takePlace(int row, int place);
 
