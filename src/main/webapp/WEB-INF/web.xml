@@ -10,8 +10,18 @@
     <servlet-class>ru.job4j.cinema.servlets.HallServlet</servlet-class>
   </servlet>
   
+  <servlet>
+    <servlet-name>PayServlet</servlet-name>
+    <servlet-class>ru.job4j.cinema.servlets.PayServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>PayServlet</servlet-name>
+    <url-pattern>/pay</url-pattern>
+  </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>HallServlet</servlet-name>
-    <url-pattern>/cinema</url-pattern>
+    <url-pattern>/getModel</url-pattern>
   </servlet-mapping>
 </web-app>
